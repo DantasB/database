@@ -1,9 +1,9 @@
 
 CREATE TABLE [Bairro]
-( 
+(
 	[Cd_Bairro]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Nm_Bairro]          varchar(50)  NOT NULL ,
-	[Cd_Municipio]       integer  NOT NULL 
+	[Cd_Municipio]       integer  NOT NULL
 )
 go
 
@@ -12,14 +12,11 @@ ALTER TABLE [Bairro]
 go
 
 CREATE TABLE [Compra]
-( 
+(
 	[Cd_Compra]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Qt_Quantidade]      integer  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL ,
-	[Cd_Produto]         integer  NOT NULL ,
-	[In_ICMS]            money  NOT NULL ,
-	[Nm_SitTribut]       char(18)  NULL ,
-	[Vl_Compra]          money  NOT NULL 
+	[Cd_Produto]         integer  NOT NULL
 )
 go
 
@@ -28,13 +25,13 @@ ALTER TABLE [Compra]
 go
 
 CREATE TABLE [Duplicata]
-( 
+(
 	[Cd_Duplicata]       integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Dt_Vencimento]      datetime  NOT NULL ,
 	[Vl_Valor]           integer  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL ,
 	[Dt_Pagamento]       datetime  NULL ,
-	[Vl_Pagamento]       integer  NULL 
+	[Vl_Pagamento]       integer  NULL
 )
 go
 
@@ -43,7 +40,7 @@ ALTER TABLE [Duplicata]
 go
 
 CREATE TABLE [Endereco]
-( 
+(
 	[Cd_Endereco]        integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Nm_Complemento]     varchar(50)  NULL ,
 	[Nu_Numero]          varchar(20)  NOT NULL ,
@@ -51,7 +48,7 @@ CREATE TABLE [Endereco]
 	[Cd_Bairro]          integer  NOT NULL ,
 	[Cd_Municipio]       integer  NOT NULL ,
 	[Cd_UF]              integer  NOT NULL ,
-	[Nu_CEP]             varchar(20)  NOT NULL 
+	[Nu_CEP]             varchar(20)  NOT NULL
 )
 go
 
@@ -60,10 +57,10 @@ ALTER TABLE [Endereco]
 go
 
 CREATE TABLE [Municipio]
-( 
+(
 	[Cd_Municipio]       integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Nm_Municipio]       varchar(50)  NOT NULL ,
-	[Cd_UF]              integer  NOT NULL 
+	[Cd_UF]              integer  NOT NULL
 )
 go
 
@@ -72,7 +69,7 @@ ALTER TABLE [Municipio]
 go
 
 CREATE TABLE [NotaFiscal]
-( 
+(
 	[Dt_Emissao]         datetime  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_NumeroSerie]     integer  NOT NULL ,
@@ -85,9 +82,7 @@ CREATE TABLE [NotaFiscal]
 	[Cd_CFOP]            char(4)  NOT NULL ,
 	[Nu_Via]             integer  NOT NULL ,
 	[Dt_LimiteEmissao]   datetime  NOT NULL ,
-	[Cd_Pessoa]          integer  NOT NULL ,
-	[XML_InfComp]        varbinary  NULL ,
-	[Vl_Total]           money  NOT NULL 
+	[Cd_Pessoa]          integer  NOT NULL
 )
 go
 
@@ -96,11 +91,11 @@ ALTER TABLE [NotaFiscal]
 go
 
 CREATE TABLE [Pessoa]
-( 
+(
 	[Nm_Pessoa]          varchar(50)  NOT NULL ,
 	[Cd_Pessoa]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_Endereco]        integer  NOT NULL ,
-	[Nu_Telefone]        varchar(20)  NULL 
+	[Nu_Telefone]        varchar(20)  NULL
 )
 go
 
@@ -109,10 +104,10 @@ ALTER TABLE [Pessoa]
 go
 
 CREATE TABLE [Pessoa_Fisica]
-( 
+(
 	[Cd_PF]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_CPF]             char(11)  NOT NULL ,
-	[Cd_Pessoa]          integer  NOT NULL 
+	[Cd_Pessoa]          integer  NOT NULL
 )
 go
 
@@ -121,12 +116,12 @@ ALTER TABLE [Pessoa_Fisica]
 go
 
 CREATE TABLE [Pessoa_Juridica]
-( 
+(
 	[Cd_CNPJ]            varchar(20)  NOT NULL ,
 	[Cd_InscEstadual]    varchar(20)  NOT NULL ,
 	[Cd_InstTribEst]     varchar(20)  NOT NULL ,
 	[Cd_PJ]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Cd_Pessoa]          integer  NOT NULL 
+	[Cd_Pessoa]          integer  NOT NULL
 )
 go
 
@@ -135,7 +130,7 @@ ALTER TABLE [Pessoa_Juridica]
 go
 
 CREATE TABLE [Produto]
-( 
+(
 	[Ds_Marca]           varchar(20)  NULL ,
 	[Ds_Descricao]       varchar(20)  NULL ,
 	[Ds_SituacaoTrib]    varchar(20)  NULL ,
@@ -143,7 +138,9 @@ CREATE TABLE [Produto]
 	[In_ICMS]            money  NOT NULL ,
 	[In_IPI]             money  NOT NULL ,
 	[Vl_Seguro]          money  NULL ,
-	[Cd_Produto]         integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION 
+	[Cd_Produto]         integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
+	[Cd_SituacaoTrib]    integer  NOT NULL ,
+	[Vl_Total]           money  NOT NULL
 )
 go
 
@@ -152,10 +149,10 @@ ALTER TABLE [Produto]
 go
 
 CREATE TABLE [Transportadora]
-( 
+(
 	[Cd_Transportadora]  integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Vl_Frete]           integer  NOT NULL ,
-	[Cd_PJ]              integer  NOT NULL 
+	[Cd_PJ]              integer  NOT NULL
 )
 go
 
@@ -164,10 +161,10 @@ ALTER TABLE [Transportadora]
 go
 
 CREATE TABLE [UF]
-( 
+(
 	[Cd_UF]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Nm_Estado]          varchar(50)  NULL ,
-	[Sg_UF]              char(2)  NULL 
+	[Sg_UF]              char(2)  NULL
 )
 go
 
@@ -176,13 +173,13 @@ ALTER TABLE [UF]
 go
 
 CREATE TABLE [Veiculo]
-( 
+(
 	[Cd_Veiculo]         integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_Placa]           varchar(7)  NOT NULL ,
 	[Cd_Transportadora]  integer  NOT NULL ,
 	[Nm_Especie]         varchar(18)  NOT NULL ,
 	[Nm_Marca]           varchar(18)  NOT NULL ,
-	[Cd_UF]              integer  NOT NULL 
+	[Cd_UF]              integer  NOT NULL
 )
 go
 
@@ -316,7 +313,7 @@ BEGIN
     /* Bairro  Endereco on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00023531", PARENT_OWNER="", PARENT_TABLE="Bairro"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_58", FK_COLUMNS="Cd_Bairro" */
     IF EXISTS (
       SELECT * FROM deleted,Endereco
@@ -334,7 +331,7 @@ BEGIN
     /* Municipio  Bairro on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Bairro"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_61", FK_COLUMNS="Cd_Municipio" */
     IF EXISTS (SELECT * FROM deleted,Municipio
       WHERE
@@ -384,7 +381,7 @@ BEGIN
   /* Bairro  Endereco on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00027714", PARENT_OWNER="", PARENT_TABLE="Bairro"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_58", FK_COLUMNS="Cd_Bairro" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -407,7 +404,7 @@ BEGIN
   /* Municipio  Bairro on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Bairro"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_61", FK_COLUMNS="Cd_Municipio" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -420,7 +417,7 @@ BEGIN
           /* %JoinFKPK(inserted,Municipio) */
           inserted.Cd_Municipio = Municipio.Cd_Municipio
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -456,7 +453,7 @@ BEGIN
     /* NotaFiscal  Compra on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="000253ee", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_81", FK_COLUMNS="Cd_NF" */
     IF EXISTS (SELECT * FROM deleted,NotaFiscal
       WHERE
@@ -479,7 +476,7 @@ BEGIN
     /* Produto  Compra on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Produto"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_46", FK_COLUMNS="Cd_Produto" */
     IF EXISTS (SELECT * FROM deleted,Produto
       WHERE
@@ -529,7 +526,7 @@ BEGIN
   /* NotaFiscal  Compra on child update no action */
   /* ERWIN_RELATION:CHECKSUM="0002975f", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_81", FK_COLUMNS="Cd_NF" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -542,7 +539,7 @@ BEGIN
           /* %JoinFKPK(inserted,NotaFiscal) */
           inserted.Cd_NF = NotaFiscal.Cd_NF
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -555,7 +552,7 @@ BEGIN
   /* Produto  Compra on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Produto"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_46", FK_COLUMNS="Cd_Produto" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -568,7 +565,7 @@ BEGIN
           /* %JoinFKPK(inserted,Produto) */
           inserted.Cd_Produto = Produto.Cd_Produto
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -604,7 +601,7 @@ BEGIN
     /* NotaFiscal  Duplicata on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="000140fb", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Duplicata"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_43", FK_COLUMNS="Cd_NF" */
     IF EXISTS (SELECT * FROM deleted,NotaFiscal
       WHERE
@@ -654,7 +651,7 @@ BEGIN
   /* NotaFiscal  Duplicata on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00015b02", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Duplicata"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_43", FK_COLUMNS="Cd_NF" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -667,7 +664,7 @@ BEGIN
           /* %JoinFKPK(inserted,NotaFiscal) */
           inserted.Cd_NF = NotaFiscal.Cd_NF
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -703,7 +700,7 @@ BEGIN
     /* Endereco  Pessoa on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00045345", PARENT_OWNER="", PARENT_TABLE="Endereco"
     CHILD_OWNER="", CHILD_TABLE="Pessoa"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_21", FK_COLUMNS="Cd_Endereco" */
     IF EXISTS (
       SELECT * FROM deleted,Pessoa
@@ -721,7 +718,7 @@ BEGIN
     /* UF  Endereco on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_64", FK_COLUMNS="Cd_UF" */
     IF EXISTS (SELECT * FROM deleted,UF
       WHERE
@@ -744,7 +741,7 @@ BEGIN
     /* Municipio  Endereco on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_63", FK_COLUMNS="Cd_Municipio" */
     IF EXISTS (SELECT * FROM deleted,Municipio
       WHERE
@@ -767,7 +764,7 @@ BEGIN
     /* Bairro  Endereco on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Bairro"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_58", FK_COLUMNS="Cd_Bairro" */
     IF EXISTS (SELECT * FROM deleted,Bairro
       WHERE
@@ -817,7 +814,7 @@ BEGIN
   /* Endereco  Pessoa on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="0004edca", PARENT_OWNER="", PARENT_TABLE="Endereco"
     CHILD_OWNER="", CHILD_TABLE="Pessoa"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_21", FK_COLUMNS="Cd_Endereco" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -840,7 +837,7 @@ BEGIN
   /* UF  Endereco on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_64", FK_COLUMNS="Cd_UF" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -853,7 +850,7 @@ BEGIN
           /* %JoinFKPK(inserted,UF) */
           inserted.Cd_UF = UF.Cd_UF
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -866,7 +863,7 @@ BEGIN
   /* Municipio  Endereco on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_63", FK_COLUMNS="Cd_Municipio" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -879,7 +876,7 @@ BEGIN
           /* %JoinFKPK(inserted,Municipio) */
           inserted.Cd_Municipio = Municipio.Cd_Municipio
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -892,7 +889,7 @@ BEGIN
   /* Bairro  Endereco on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Bairro"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_58", FK_COLUMNS="Cd_Bairro" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -905,7 +902,7 @@ BEGIN
           /* %JoinFKPK(inserted,Bairro) */
           inserted.Cd_Bairro = Bairro.Cd_Bairro
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -941,7 +938,7 @@ BEGIN
     /* Municipio  Endereco on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00030a8a", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_63", FK_COLUMNS="Cd_Municipio" */
     IF EXISTS (
       SELECT * FROM deleted,Endereco
@@ -959,7 +956,7 @@ BEGIN
     /* Municipio  Bairro on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Bairro"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_61", FK_COLUMNS="Cd_Municipio" */
     IF EXISTS (
       SELECT * FROM deleted,Bairro
@@ -977,7 +974,7 @@ BEGIN
     /* UF  Municipio on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Municipio"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_62", FK_COLUMNS="Cd_UF" */
     IF EXISTS (SELECT * FROM deleted,UF
       WHERE
@@ -1027,7 +1024,7 @@ BEGIN
   /* Municipio  Endereco on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00035d35", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_63", FK_COLUMNS="Cd_Municipio" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1050,7 +1047,7 @@ BEGIN
   /* Municipio  Bairro on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Municipio"
     CHILD_OWNER="", CHILD_TABLE="Bairro"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_61", FK_COLUMNS="Cd_Municipio" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1073,7 +1070,7 @@ BEGIN
   /* UF  Municipio on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Municipio"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_62", FK_COLUMNS="Cd_UF" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1086,7 +1083,7 @@ BEGIN
           /* %JoinFKPK(inserted,UF) */
           inserted.Cd_UF = UF.Cd_UF
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1122,7 +1119,7 @@ BEGIN
     /* NotaFiscal  Compra on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00059df3", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_81", FK_COLUMNS="Cd_NF" */
     IF EXISTS (
       SELECT * FROM deleted,Compra
@@ -1140,7 +1137,7 @@ BEGIN
     /* NotaFiscal  Duplicata on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Duplicata"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_43", FK_COLUMNS="Cd_NF" */
     IF EXISTS (
       SELECT * FROM deleted,Duplicata
@@ -1158,7 +1155,7 @@ BEGIN
     /* Pessoa  NotaFiscal on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_75", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (SELECT * FROM deleted,Pessoa
       WHERE
@@ -1181,7 +1178,7 @@ BEGIN
     /* Transportadora  NotaFiscal on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_74", FK_COLUMNS="Cd_Transportadora" */
     IF EXISTS (SELECT * FROM deleted,Transportadora
       WHERE
@@ -1204,7 +1201,7 @@ BEGIN
     /* Pessoa_Juridica  NotaFiscal on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_26", FK_COLUMNS="Cd_PJ" */
     IF EXISTS (SELECT * FROM deleted,Pessoa_Juridica
       WHERE
@@ -1254,7 +1251,7 @@ BEGIN
   /* NotaFiscal  Compra on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="000657aa", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_81", FK_COLUMNS="Cd_NF" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1277,7 +1274,7 @@ BEGIN
   /* NotaFiscal  Duplicata on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="NotaFiscal"
     CHILD_OWNER="", CHILD_TABLE="Duplicata"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_43", FK_COLUMNS="Cd_NF" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1300,7 +1297,7 @@ BEGIN
   /* Pessoa  NotaFiscal on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_75", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1313,7 +1310,7 @@ BEGIN
           /* %JoinFKPK(inserted,Pessoa) */
           inserted.Cd_Pessoa = Pessoa.Cd_Pessoa
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1326,7 +1323,7 @@ BEGIN
   /* Transportadora  NotaFiscal on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_74", FK_COLUMNS="Cd_Transportadora" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1353,7 +1350,7 @@ BEGIN
   /* Pessoa_Juridica  NotaFiscal on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_26", FK_COLUMNS="Cd_PJ" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1366,7 +1363,7 @@ BEGIN
           /* %JoinFKPK(inserted,Pessoa_Juridica) */
           inserted.Cd_PJ = Pessoa_Juridica.Cd_PJ
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1402,7 +1399,7 @@ BEGIN
     /* Pessoa  NotaFiscal on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00042c18", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_75", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (
       SELECT * FROM deleted,NotaFiscal
@@ -1420,7 +1417,7 @@ BEGIN
     /* Pessoa  Pessoa_Fisica on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Fisica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_71", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (
       SELECT * FROM deleted,Pessoa_Fisica
@@ -1438,7 +1435,7 @@ BEGIN
     /* Pessoa  Pessoa_Juridica on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Juridica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_70", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (
       SELECT * FROM deleted,Pessoa_Juridica
@@ -1456,7 +1453,7 @@ BEGIN
     /* Endereco  Pessoa on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Endereco"
     CHILD_OWNER="", CHILD_TABLE="Pessoa"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_21", FK_COLUMNS="Cd_Endereco" */
     IF EXISTS (SELECT * FROM deleted,Endereco
       WHERE
@@ -1506,7 +1503,7 @@ BEGIN
   /* Pessoa  NotaFiscal on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00049425", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_75", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1529,7 +1526,7 @@ BEGIN
   /* Pessoa  Pessoa_Fisica on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Fisica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_71", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1552,7 +1549,7 @@ BEGIN
   /* Pessoa  Pessoa_Juridica on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Juridica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_70", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1575,7 +1572,7 @@ BEGIN
   /* Endereco  Pessoa on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Endereco"
     CHILD_OWNER="", CHILD_TABLE="Pessoa"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_21", FK_COLUMNS="Cd_Endereco" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1588,7 +1585,7 @@ BEGIN
           /* %JoinFKPK(inserted,Endereco) */
           inserted.Cd_Endereco = Endereco.Cd_Endereco
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1624,7 +1621,7 @@ BEGIN
     /* Pessoa  Pessoa_Fisica on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00014c29", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Fisica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_71", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (SELECT * FROM deleted,Pessoa
       WHERE
@@ -1674,7 +1671,7 @@ BEGIN
   /* Pessoa  Pessoa_Fisica on child update no action */
   /* ERWIN_RELATION:CHECKSUM="000169e5", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Fisica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_71", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1687,7 +1684,7 @@ BEGIN
           /* %JoinFKPK(inserted,Pessoa) */
           inserted.Cd_Pessoa = Pessoa.Cd_Pessoa
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1723,7 +1720,7 @@ BEGIN
     /* Pessoa_Juridica  Transportadora on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00034752", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="Transportadora"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_30", FK_COLUMNS="Cd_PJ" */
     IF EXISTS (
       SELECT * FROM deleted,Transportadora
@@ -1741,7 +1738,7 @@ BEGIN
     /* Pessoa_Juridica  NotaFiscal on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_26", FK_COLUMNS="Cd_PJ" */
     IF EXISTS (
       SELECT * FROM deleted,NotaFiscal
@@ -1759,7 +1756,7 @@ BEGIN
     /* Pessoa  Pessoa_Juridica on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Juridica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_70", FK_COLUMNS="Cd_Pessoa" */
     IF EXISTS (SELECT * FROM deleted,Pessoa
       WHERE
@@ -1809,7 +1806,7 @@ BEGIN
   /* Pessoa_Juridica  Transportadora on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00038417", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="Transportadora"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_30", FK_COLUMNS="Cd_PJ" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1832,7 +1829,7 @@ BEGIN
   /* Pessoa_Juridica  NotaFiscal on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_26", FK_COLUMNS="Cd_PJ" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1855,7 +1852,7 @@ BEGIN
   /* Pessoa  Pessoa_Juridica on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa"
     CHILD_OWNER="", CHILD_TABLE="Pessoa_Juridica"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_70", FK_COLUMNS="Cd_Pessoa" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -1868,7 +1865,7 @@ BEGIN
           /* %JoinFKPK(inserted,Pessoa) */
           inserted.Cd_Pessoa = Pessoa.Cd_Pessoa
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -1904,7 +1901,7 @@ BEGIN
     /* Produto  Compra on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00010bec", PARENT_OWNER="", PARENT_TABLE="Produto"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_46", FK_COLUMNS="Cd_Produto" */
     IF EXISTS (
       SELECT * FROM deleted,Compra
@@ -1949,7 +1946,7 @@ BEGIN
   /* Produto  Compra on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00012bb0", PARENT_OWNER="", PARENT_TABLE="Produto"
     CHILD_OWNER="", CHILD_TABLE="Compra"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_46", FK_COLUMNS="Cd_Produto" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -1995,7 +1992,7 @@ BEGIN
     /* Transportadora  NotaFiscal on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00036754", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_74", FK_COLUMNS="Cd_Transportadora" */
     IF EXISTS (
       SELECT * FROM deleted,NotaFiscal
@@ -2013,7 +2010,7 @@ BEGIN
     /* Transportadora  Veiculo on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_40", FK_COLUMNS="Cd_Transportadora" */
     IF EXISTS (
       SELECT * FROM deleted,Veiculo
@@ -2031,7 +2028,7 @@ BEGIN
     /* Pessoa_Juridica  Transportadora on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="Transportadora"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_30", FK_COLUMNS="Cd_PJ" */
     IF EXISTS (SELECT * FROM deleted,Pessoa_Juridica
       WHERE
@@ -2081,7 +2078,7 @@ BEGIN
   /* Transportadora  NotaFiscal on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="0003a9d0", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="NotaFiscal"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_74", FK_COLUMNS="Cd_Transportadora" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -2104,7 +2101,7 @@ BEGIN
   /* Transportadora  Veiculo on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_40", FK_COLUMNS="Cd_Transportadora" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -2127,7 +2124,7 @@ BEGIN
   /* Pessoa_Juridica  Transportadora on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Pessoa_Juridica"
     CHILD_OWNER="", CHILD_TABLE="Transportadora"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_30", FK_COLUMNS="Cd_PJ" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -2140,7 +2137,7 @@ BEGIN
           /* %JoinFKPK(inserted,Pessoa_Juridica) */
           inserted.Cd_PJ = Pessoa_Juridica.Cd_PJ
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -2176,7 +2173,7 @@ BEGIN
     /* UF  Veiculo on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="0002a21a", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_73", FK_COLUMNS="Cd_UF" */
     IF EXISTS (
       SELECT * FROM deleted,Veiculo
@@ -2194,7 +2191,7 @@ BEGIN
     /* UF  Endereco on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_64", FK_COLUMNS="Cd_UF" */
     IF EXISTS (
       SELECT * FROM deleted,Endereco
@@ -2212,7 +2209,7 @@ BEGIN
     /* UF  Municipio on parent delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Municipio"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_62", FK_COLUMNS="Cd_UF" */
     IF EXISTS (
       SELECT * FROM deleted,Municipio
@@ -2257,7 +2254,7 @@ BEGIN
   /* UF  Veiculo on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00030192", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_73", FK_COLUMNS="Cd_UF" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -2280,7 +2277,7 @@ BEGIN
   /* UF  Endereco on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Endereco"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_64", FK_COLUMNS="Cd_UF" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -2303,7 +2300,7 @@ BEGIN
   /* UF  Municipio on parent update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Municipio"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_62", FK_COLUMNS="Cd_UF" */
   IF
     /* %ParentPK(" OR",UPDATE) */
@@ -2349,7 +2346,7 @@ BEGIN
     /* UF  Veiculo on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="000272bf", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_73", FK_COLUMNS="Cd_UF" */
     IF EXISTS (SELECT * FROM deleted,UF
       WHERE
@@ -2372,7 +2369,7 @@ BEGIN
     /* Transportadora  Veiculo on child delete no action */
     /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_40", FK_COLUMNS="Cd_Transportadora" */
     IF EXISTS (SELECT * FROM deleted,Transportadora
       WHERE
@@ -2422,7 +2419,7 @@ BEGIN
   /* UF  Veiculo on child update no action */
   /* ERWIN_RELATION:CHECKSUM="0002ba7c", PARENT_OWNER="", PARENT_TABLE="UF"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_73", FK_COLUMNS="Cd_UF" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -2435,7 +2432,7 @@ BEGIN
           /* %JoinFKPK(inserted,UF) */
           inserted.Cd_UF = UF.Cd_UF
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
@@ -2448,7 +2445,7 @@ BEGIN
   /* Transportadora  Veiculo on child update no action */
   /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="Transportadora"
     CHILD_OWNER="", CHILD_TABLE="Veiculo"
-    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="",
     FK_CONSTRAINT="R_40", FK_COLUMNS="Cd_Transportadora" */
   IF
     /* %ChildFK(" OR",UPDATE) */
@@ -2461,7 +2458,7 @@ BEGIN
           /* %JoinFKPK(inserted,Transportadora) */
           inserted.Cd_Transportadora = Transportadora.Cd_Transportadora
     /* %NotnullFK(inserted," IS NULL","select @nullcnt = count(*) from inserted where"," AND") */
-    
+
     IF @validcnt + @nullcnt != @numrows
     BEGIN
       SELECT @errno  = 30007,
