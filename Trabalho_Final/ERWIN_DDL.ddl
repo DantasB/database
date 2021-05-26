@@ -2,7 +2,7 @@
 CREATE TABLE [Bairro]
 ( 
 	[Cd_Bairro]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Nm_Bairro]          varchar(50)  NULL ,
+	[Nm_Bairro]          varchar(50)  NOT NULL ,
 	[Cd_Municipio]       integer  NOT NULL 
 )
 go
@@ -14,12 +14,12 @@ go
 CREATE TABLE [Compra]
 ( 
 	[Cd_Compra]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Qt_Quantidade]      integer  NULL ,
+	[Qt_Quantidade]      integer  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL ,
 	[Cd_Produto]         integer  NOT NULL ,
-	[In_ICMS]            integer  NULL ,
-	[Vl_Unitario]        integer  NULL ,
-	[Nm_SitTribut]       char(18)  NULL 
+	[In_ICMS]            money  NOT NULL ,
+	[Nm_SitTribut]       char(18)  NULL ,
+	[Vl_Compra]          money  NOT NULL 
 )
 go
 
@@ -30,8 +30,8 @@ go
 CREATE TABLE [Duplicata]
 ( 
 	[Cd_Duplicata]       integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Dt_Vencimento]      datetime  NULL ,
-	[Vl_Valor]           integer  NULL ,
+	[Dt_Vencimento]      datetime  NOT NULL ,
+	[Vl_Valor]           integer  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL ,
 	[Dt_Pagamento]       datetime  NULL ,
 	[Vl_Pagamento]       integer  NULL 
@@ -46,12 +46,12 @@ CREATE TABLE [Endereco]
 ( 
 	[Cd_Endereco]        integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Nm_Complemento]     varchar(50)  NULL ,
-	[Nu_Numero]          varchar(20)  NULL ,
-	[Nm_Endereco]        varchar(200)  NULL ,
+	[Nu_Numero]          varchar(20)  NOT NULL ,
+	[Nm_Endereco]        varchar(200)  NOT NULL ,
 	[Cd_Bairro]          integer  NOT NULL ,
 	[Cd_Municipio]       integer  NOT NULL ,
 	[Cd_UF]              integer  NOT NULL ,
-	[Nu_CEP]             varchar(20)  NULL 
+	[Nu_CEP]             varchar(20)  NOT NULL 
 )
 go
 
@@ -62,7 +62,7 @@ go
 CREATE TABLE [Municipio]
 ( 
 	[Cd_Municipio]       integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Nm_Municipio]       varchar(50)  NULL ,
+	[Nm_Municipio]       varchar(50)  NOT NULL ,
 	[Cd_UF]              integer  NOT NULL 
 )
 go
@@ -73,19 +73,21 @@ go
 
 CREATE TABLE [NotaFiscal]
 ( 
-	[Dt_Emissao]         datetime  NULL ,
+	[Dt_Emissao]         datetime  NOT NULL ,
 	[Cd_NF]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Cd_NumeroSerie]     integer  NULL ,
+	[Cd_NumeroSerie]     integer  NOT NULL ,
 	[Ds_Informacao]      varchar(20)  NULL ,
 	[Cd_PJ]              integer  NOT NULL ,
-	[Tp_EntradaSaida]    bit  NULL ,
-	[Dt_EntradaSaida]    datetime  NULL ,
+	[Tp_EntradaSaida]    bit  NOT NULL ,
+	[Dt_EntradaSaida]    datetime  NOT NULL ,
 	[Tp_FreteConta]      bit  NULL ,
 	[Cd_Transportadora]  integer  NULL ,
-	[Cd_CFOP]            char(4)  NULL ,
-	[Nu_Via]             integer  NULL ,
-	[Dt_LimiteEmissao]   datetime  NULL ,
-	[Cd_Pessoa]          integer  NOT NULL 
+	[Cd_CFOP]            char(4)  NOT NULL ,
+	[Nu_Via]             integer  NOT NULL ,
+	[Dt_LimiteEmissao]   datetime  NOT NULL ,
+	[Cd_Pessoa]          integer  NOT NULL ,
+	[XML_InfComp]        varbinary  NULL ,
+	[Vl_Total]           money  NOT NULL 
 )
 go
 
@@ -95,7 +97,7 @@ go
 
 CREATE TABLE [Pessoa]
 ( 
-	[Nm_Pessoa]          varchar(50)  NULL ,
+	[Nm_Pessoa]          varchar(50)  NOT NULL ,
 	[Cd_Pessoa]          integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_Endereco]        integer  NOT NULL ,
 	[Nu_Telefone]        varchar(20)  NULL 
@@ -109,7 +111,7 @@ go
 CREATE TABLE [Pessoa_Fisica]
 ( 
 	[Cd_PF]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Cd_CPF]             char(11)  NULL ,
+	[Cd_CPF]             char(11)  NOT NULL ,
 	[Cd_Pessoa]          integer  NOT NULL 
 )
 go
@@ -120,9 +122,9 @@ go
 
 CREATE TABLE [Pessoa_Juridica]
 ( 
-	[Cd_CNPJ]            varchar(20)  NULL ,
-	[Cd_InscEstadual]    varchar(20)  NULL ,
-	[Cd_InstTribEst]     varchar(20)  NULL ,
+	[Cd_CNPJ]            varchar(20)  NOT NULL ,
+	[Cd_InscEstadual]    varchar(20)  NOT NULL ,
+	[Cd_InstTribEst]     varchar(20)  NOT NULL ,
 	[Cd_PJ]              integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
 	[Cd_Pessoa]          integer  NOT NULL 
 )
@@ -137,11 +139,10 @@ CREATE TABLE [Produto]
 	[Ds_Marca]           varchar(20)  NULL ,
 	[Ds_Descricao]       varchar(20)  NULL ,
 	[Ds_SituacaoTrib]    varchar(20)  NULL ,
-	[Vl_Unitario]        integer  NULL ,
-	[In_ICMS]            integer  NULL ,
-	[In_IPI]             integer  NULL ,
-	[Vl_Seguro]          integer  NULL ,
-	[Vl_Total]           integer  NULL ,
+	[Vl_Unitario]        money  NOT NULL ,
+	[In_ICMS]            money  NOT NULL ,
+	[In_IPI]             money  NOT NULL ,
+	[Vl_Seguro]          money  NULL ,
 	[Cd_Produto]         integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION 
 )
 go
@@ -153,7 +154,7 @@ go
 CREATE TABLE [Transportadora]
 ( 
 	[Cd_Transportadora]  integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Vl_Frete]           integer  NULL ,
+	[Vl_Frete]           integer  NOT NULL ,
 	[Cd_PJ]              integer  NOT NULL 
 )
 go
@@ -177,10 +178,10 @@ go
 CREATE TABLE [Veiculo]
 ( 
 	[Cd_Veiculo]         integer  NOT NULL  IDENTITY ( 1,1 ) NOT FOR REPLICATION ,
-	[Cd_Placa]           varchar(7)  NULL ,
+	[Cd_Placa]           varchar(7)  NOT NULL ,
 	[Cd_Transportadora]  integer  NOT NULL ,
-	[Nm_Especie]         varchar(18)  NULL ,
-	[Nm_Marca]           varchar(18)  NULL ,
+	[Nm_Especie]         varchar(18)  NOT NULL ,
+	[Nm_Marca]           varchar(18)  NOT NULL ,
 	[Cd_UF]              integer  NOT NULL 
 )
 go
