@@ -1,12 +1,12 @@
 
-INSERT INTO Duplicata (Cd_Duplicata, Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
-VALUES (8, CAST('2022-01-01' AS DATETIME), 40, 3, CAST('2021-09-09' AS DATETIME), 40)
+INSERT INTO Duplicata (Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
+VALUES (CAST('2022-01-01' AS DATETIME), 40, 3, CAST('2021-09-09' AS DATETIME), 40)
 
-INSERT INTO Duplicata (Cd_Duplicata, Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
-VALUES (7, CAST('2021-01-01' AS DATETIME), 50, 2, NULL, NULL)
+INSERT INTO Duplicata (Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
+VALUES (CAST('2021-01-01' AS DATETIME), 50, 2, NULL, NULL)
 
-INSERT INTO Duplicata (Cd_Duplicata, Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
-VALUES (6, CAST('2022-01-01' AS DATETIME), 40, 1, NULL, NULL)
+INSERT INTO Duplicata (Dt_Vencimento, Vl_Valor, Cd_NF, Dt_Pagamento, Vl_Pagamento)
+VALUES (CAST('2022-01-01' AS DATETIME), 40, 1, NULL, NULL)
 
 SELECT *
 FROM Duplicata

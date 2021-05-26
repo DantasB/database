@@ -1,7 +1,6 @@
-INSERT INTO NotaFiscal 
+INSERT INTO NotaFiscal
            (
 				Dt_Emissao,
-				Cd_NF,
 				Cd_NumeroSerie,
 				Ds_Informacao,
 				Cd_PJ,
@@ -16,7 +15,6 @@ INSERT INTO NotaFiscal
      VALUES
 		(
 			CAST('2021-03-02T00:00:00.000' AS DateTime),
-			4040,
 			321,
 			'Xpto',
 			1,
