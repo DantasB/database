@@ -11,4 +11,4 @@
   values (6,2,1,2,0,20,'Isento'), (7,2,1,3,0,20,'Isento'), (8,2,1,4,0,20,'Isento'), (9,2,1,5,5,20,'Isento')
 
   INSERT INTO [CURSODB06].[dbo].[Compra] (Cd_Compra, Qt_Quantidade, Cd_NF, Cd_Produto, In_ICMS, Vl_Unitario, Nm_SitTribut)
-  values (11,2,2,1,0,20,'Não tributada'), (12,2,2,3,0,20,'Não tributada'), (13,2,2,4,0,20,'Não tributada'), (14,2,2,5,5,20,'Não tributada')
+  values (11,2,2,1,0,20,'NÃ£o tributada'), (12,2,2,3,0,20,'NÃ£o tributada'), (13,2,2,4,0,20,'NÃ£o tributada'), (14,2,2,5,5,20,'NÃ£o tributada')
